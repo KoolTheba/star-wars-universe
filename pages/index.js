@@ -1,4 +1,6 @@
 import Head from 'next/head'
+
+import FilmSearch from '../components/FilmSearch'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -14,13 +16,15 @@ export default function Home() {
         <section className={styles.sectionTitle}>
           <img className={styles.yodaImage} src='/baby-yoda.png' />
           <h2 className={styles.title}>
-            Films by title, character or planet search you can!
+            Star Wars films search you can!
           </h2>
         </section>
 
-        <p className={styles.description}>
-          Instructions:
-        </p>
+        <FilmSearch />
+
+        <div>
+          <img src='/bb8.jpeg' className={styles.bb8Image} />
+        </div>
       </main>
 
       <footer className={styles.footer}>
