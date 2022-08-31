@@ -1,15 +1,16 @@
 .container {
-  min-height: 100vh;
+  max-height: 100vh;
+  padding: 1rem;
 }
 
 .main {
   min-height: 90vh;
-  padding: 4rem 0;
+  padding: 9rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .footer {
@@ -50,7 +51,6 @@
 }
 
 .description {
-  margin: 4rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
 }
@@ -64,6 +64,13 @@
   width: 2rem;
   height: 2rem;
   margin-right: 0.5rem;
+}
+
+.bb8Image {
+  width: 12rem;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 /* @media (max-width: 600px) {} */
