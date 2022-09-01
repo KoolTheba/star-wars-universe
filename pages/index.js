@@ -14,7 +14,6 @@ export default function Home() {
 
       <main className={styles.main}>
         <section className={styles.sectionTitle}>
-          <img className={styles.yodaImage} src='/baby-yoda.png' />
           <h2 className={styles.title}>
             Star Wars films search you can!
           </h2>
