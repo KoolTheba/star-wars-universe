@@ -1,0 +1,28 @@
+.cardsWrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.cardsList {
+    list-style: none;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cardItem {
+    width: 16rem;
+    height: 6rem;
+    border-radius: 10px;
+    border: 1px solid gray;
+    padding: 0.8rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 12px 0 rgb(0 0 0 / 10%);
+    cursor: pointer;
+}

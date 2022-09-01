@@ -1,0 +1,7 @@
+.cardInfo {
+    margin-bottom: 0.3rem;
+}
+
+.cardInfo:last-child {
+    float: right;
+}
