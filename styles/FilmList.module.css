@@ -19,10 +19,11 @@
     width: 16rem;
     height: 6rem;
     border-radius: 10px;
-    border: 1px solid gray;
+    border: 1px solid #584B5C;
     padding: 0.8rem;
     margin-right: 1rem;
     margin-bottom: 1rem;
     box-shadow: 0 8px 12px 0 rgb(0 0 0 / 10%);
     cursor: pointer;
+    background-color: #EF534F;
 }

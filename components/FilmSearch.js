@@ -2,7 +2,7 @@ import React, { useState, useReducer, useEffect } from "react"
 import { useRouter } from 'next/router'
 
 import FilmList from '../components/FilmList'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/FilmSearch.module.css'
 
 const initialState = {
   loading: false,
@@ -103,36 +103,33 @@ const FilmSearch = () => {
 
     return (
         <>
-        <section>
+        <section className={styles.instructionsSection}>
           <p className={styles.description}>Instructions:</p>
-          <ol>
+          <ol className={styles.directionsList}>
             <li>Search by one or more words separated by blank spaces</li>
             <li>The word(s) could be from a film title, a character, a planet or all at once!</li>
             <li>Press Go button and see the results! 🚀</li>
           </ol>
         </section>
 
-        <section>
-          <p>Hints:</p>
-          <ul>
-            <li>Looking for r2d2? Search for r2</li>
-            <li>Looking for C3PO? Search for 3po</li>
-          </ul>
+        <section className={styles.hintSection}>
+          <p className={styles.hints}>Hints: Looking for r2d2? Search for r2; looking for C3PO? Search for 3po</p>
         </section>
 
-        <form>
+        <form className={styles.form}>
           <input
+            className={styles.formInput}
             type='text'
             placeholder='Search by title, character or planet...'
             value={searchValue}
             onChange={handleChange}
           />
-          <button onClick={handleSearch}>Go!</button>
-          <button onClick={handleReset}>Reset</button>
+          <button className={styles.ctaButton} onClick={handleSearch}>Go!</button>
+          <button className={styles.resetButton} onClick={handleReset}>Reset</button>
         </form>
 
-        {loading && <span>In our magic we work...not hurry you must be!</span>}
-        {error && <span>No films you found. Reset and search again.</span>}
+        {loading && <span className={styles.loading}>Magic at work...not hurry you must be!</span>}
+        {error && <span className={styles.error}>No films you found. Reset and search again.</span>}
         {data && <FilmList filmsList={data}/>}
         </>
     )

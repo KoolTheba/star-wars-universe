@@ -1,6 +1,6 @@
 .container {
   max-height: 100vh;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .main {
@@ -15,11 +15,11 @@
 
 .footer {
   display: flex;
-  flex: 1;
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
-  height: 4rem;
+  height: 5rem;
+  font-size: 1.3rem;
 }
 
 .footer a {
@@ -27,32 +27,25 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  cursor: pointer;
+  color: #ffa500;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
+.footer a:hover,
+.footer a:focus,
+.footer a:active {
   text-decoration: underline;
 }
 
 .title {
   margin: 0;
   line-height: 1.15;
+  font-size: 2rem;
 }
 
 .title,
 .description {
   text-align: center;
-}
-
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
 }
 
 .sectionTitle {
@@ -72,5 +65,3 @@
   top: 0;
   right: 0;
 }
-
-/* @media (max-width: 600px) {} */
