@@ -130,9 +130,9 @@ const FilmSearch = () => {
           <button className={styles.resetButton} onClick={handleReset}>Reset</button>
         </form>
 
-        {loading && <span className={styles.loading}>Magic at work...not hurry you must be!</span>}
+        {loading && <span className={styles.loading}>Working the Force is...not hurry you must be!</span>}
         {error && <span className={styles.error}>No films you found. Reset and search again.</span>}
-        {data && <FilmList filmsList={data}/>}
+        {data && <FilmList filmsList={data} searchContext={searchValue} />}
         </>
     )
 }
