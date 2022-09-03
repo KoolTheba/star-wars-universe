@@ -13,11 +13,13 @@ const initialState = {
 function fetchPostReducer(state, action) {
   if(action.type === "loading"){
     return {
-      ...state,
-      loading: true
+      loading: true,
+      data: null,
+      error: null
     }
   } else if (action.type === "fetchComplete") {
     return {
+      loading: false,
       data: action.data,
       error: null
     };
