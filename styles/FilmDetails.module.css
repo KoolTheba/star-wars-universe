@@ -1,5 +1,53 @@
 .container {
+    min-height: 90vh;
+    padding: 4rem 2.5rem 0 2.5rem;
+    flex: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.backButton {
+    align-self: flex-start;
+    margin-bottom: 4rem;
+    font-size: 1.5rem;
+    height: 3rem;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.titleWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    height: auto;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    margin-right: 1.5rem;
+}
+
+.subtitle {
+    font-size: 1.8rem;
+}
+
+.filmDetailsWrapper {
+    width: 100%;
+    height: auto;
+    background-color: #ffa500;
+    margin-top: 2rem;
+    border-radius: 5px;
+    padding: 1rem;
+    font-size: 1.8rem;
+}
+
+.filmDetailsWrapper > p {
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 900px) {
+    .filmDetailsWrapper { width: 90% }
 }
