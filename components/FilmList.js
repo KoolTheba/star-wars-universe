@@ -4,12 +4,7 @@ import FilmCard from './FilmCard'
 
 import styles from '../styles/FilmList.module.css'
 
-const FilmList = ({filmsList, error}) => {
-
-    if(!error && filmsList.length === 0){
-        return <span>There are no films under that criteria</span>
-    }
-
+const FilmList = ({filmsList, searchContext}) => {
     return (
         <>
             <div className={styles.cardsWrapper}>
@@ -17,7 +12,7 @@ const FilmList = ({filmsList, error}) => {
                 <ul className={styles.cardsList}>
                 {filmsList.map((film) => (
                     <li key={film.episode_id} className={styles.cardItem}>
-                        <FilmCard film={film}/>
+                        <FilmCard film={film} searchContext={searchContext}/>
                     </li>
                 ))}
                 </ul>
