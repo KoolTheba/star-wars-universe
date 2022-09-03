@@ -7,9 +7,24 @@
     margin-top: 1rem;
 }
 
+.titleWrapper {
+    display: flex;
+}
+
 .title {
     text-align: center;
     font-size: 1.8rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.context {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    background-color: #ffa500;
+    padding: 0.15rem;
 }
 
 .cardsList {
