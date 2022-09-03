@@ -1,18 +1,21 @@
 import React from "react"
 
 import FilmCard from './FilmCard'
+import SearchDetails from "./SearchDetails"
+
+import { arrayHandler } from "../utils/arrayTransform"
 
 import styles from '../styles/FilmList.module.css'
 
 const FilmList = ({filmsList, searchContext}) => {
-    const searchContextElements = searchContext.split(' ').map((el) => el)
+    const searchContextElements = arrayHandler(searchContext)
 
     return (
         <>
             <div className={styles.cardsWrapper}>
                 <div className={styles.titleWrapper}>
                     <h3 className={styles.title}>Your films list for your search:</h3>
-                    {searchContextElements.map((el, index) => <span key={index} className={styles.context}>{el}</span>)}
+                    <SearchDetails list={searchContextElements}/>
                 </div>
                 <ul className={styles.cardsList}>
                 {filmsList.map((film) => (

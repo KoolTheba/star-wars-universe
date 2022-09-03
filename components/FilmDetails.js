@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
+import SearchDetails from './SearchDetails'
+
+import { arrayHandler } from '../utils/arrayTransform'
+
 import styles from '../styles/FilmDetails.module.css'
 
 const FilmDetails = () => {
@@ -37,6 +41,8 @@ const FilmDetails = () => {
         )
     }
 
+    const searchTermsList = arrayHandler(search)
+
     return (
         <div className={styles.container}>
             {filmDetails &&
@@ -56,6 +62,9 @@ const FilmDetails = () => {
                 <div className={styles.titleWrapper}>
                     <h1 className={styles.title}>{filmDetails.title}</h1>
                     <p className={styles.subtitle}>Episode: {filmId}</p>
+                </div>
+                <div className={styles.searchTermsWrapper}>
+                    <SearchDetails list={searchTermsList}/>
                 </div>
                 <div className={styles.filmDetailsWrapper}>
                     <p>Director: {filmDetails.director}</p>
