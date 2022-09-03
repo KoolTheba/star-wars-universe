@@ -1,7 +1,9 @@
-import React, { useState, useReducer, useEffect } from "react"
+import React, { useState, useReducer, useEffect, useRef, useCallback } from "react"
 import { useRouter } from 'next/router'
 
-import FilmList from '../components/FilmList'
+import { saveToStorage, loadFromStorage, removeFromStorage } from '../utils/localStorage'
+
+import FilmList from './FilmList'
 import styles from '../styles/FilmSearch.module.css'
 
 const initialState = {
@@ -44,7 +46,6 @@ const searchByTerm = async (term) => {
   const results = await Promise.all(urlsList.map(url => fetch(url)))
   .then(responses => Promise.all(responses.map(res => res.json())))
   .catch((error) => dispatch({ type: "error", error }))
-
   
   const result = results.filter(el => el.results.length)
   return result[0].results[0].films 
@@ -53,14 +54,21 @@ const searchByTerm = async (term) => {
 }
 
 const FilmSearch = () => {
+  const router = useRouter()
+
   const [state, dispatch] = useReducer(fetchPostReducer, initialState);
 
   const [searchValue, setSearchValue] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const router = useRouter()
+  const searchValueRef = useCallback(node => {
+    if(router.query.search) {
+      setSearchValue(router.query.search)
+      setIsSubmitted(true)
+    }
+  }, [router.query.search])
 
-   useEffect(() => {
+  useEffect(() => {
     const searchValuesList = searchValue.length > 0 ? searchValue.trim().split(' ') : []
 
     const fetchFilmList = () => {
@@ -74,12 +82,12 @@ const FilmSearch = () => {
       })
       .then((data) => {
         dispatch({ type: "fetchComplete", data })
+        setSearchValue('')
       })
       .catch((error) => dispatch({ type: "error", error }))
     }
 
     isSubmitted && fetchFilmList()
-    setSearchValue([])
 
     }, [isSubmitted]);
 
@@ -92,12 +100,12 @@ const FilmSearch = () => {
       setIsSubmitted(true)
       router.push({
         pathname: '/',
-        query: { searchValue },
+        query: { search: searchValue }
       })
     }
 
     const handleReset = () => {
-      setSearchValue([])
+      setSearchValue('')
       setIsSubmitted(false)
     }
 
@@ -125,6 +133,7 @@ const FilmSearch = () => {
             placeholder='Search by title, character or planet...'
             value={searchValue}
             onChange={handleChange}
+            ref={searchValueRef}
           />
           <button className={styles.ctaButton} onClick={handleSearch}>Go!</button>
           <button className={styles.resetButton} onClick={handleReset}>Reset</button>
@@ -132,7 +141,7 @@ const FilmSearch = () => {
 
         {loading && <span className={styles.loading}>Working the Force is...not hurry you must be!</span>}
         {error && <span className={styles.error}>No films you found. Reset and search again.</span>}
-        {data && <FilmList filmsList={data} searchContext={searchValue} />}
+        {data && <FilmList filmsList={data} searchContext={router.query.search} />}
         </>
     )
 }
