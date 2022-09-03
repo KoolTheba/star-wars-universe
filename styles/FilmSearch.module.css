@@ -42,11 +42,6 @@
     margin: 1rem 0;
 }
 
-.form > input,
-.form > button {
-    margin-bottom: 1.3rem;
-}
-
 .formInput {
     width: 90%;
     height: 4rem;
@@ -54,6 +49,7 @@
     padding: 0.5rem;
     font-size: 1rem;
     box-shadow: 0 8px 8px 0 rgb(0 0 0 / 10%);
+    margin-bottom: 1.8rem;
 }
 
 .formInput::placeholder {
@@ -66,14 +62,15 @@
 
 .ctaButton,
 .resetButton {
-    width: 9rem;
+    width: 90%;
     height: 4rem;
     font-size: 1.5rem;
-    border-radius: 10px;
+    border-radius: 5px;
     font-weight: 800;
     cursor: pointer;
     box-shadow: 0 8px 12px 0 rgb(0 0 0 / 10%);
     border-style: none;
+    margin-bottom: 1rem;
 }
 
 .ctaButton{
@@ -103,9 +100,30 @@
   
   @keyframes pulse {
     0% {
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
     100% {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
-  }
+}
+
+@media screen and (min-width: 1024px) {
+    .form {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        max-width: 50rem;
+        margin-top: 3rem;
+    }
+
+    .formInput {
+        width: 70%;
+        margin-bottom: 0px;
+    }
+
+    .ctaButton,
+    .resetButton {
+        width: 15%;
+        margin-bottom: 0px;
+    }
+}

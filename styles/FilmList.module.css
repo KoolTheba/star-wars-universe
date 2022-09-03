@@ -7,6 +7,11 @@
     margin-top: 1rem;
 }
 
+.title {
+    text-align: center;
+    font-size: 1.8rem;
+}
+
 .cardsList {
     list-style: none;
     width: auto;
@@ -16,14 +21,37 @@
 }
 
 .cardItem {
-    width: 16rem;
-    height: 6rem;
+    min-width: 100%;
+    height: auto;
     border-radius: 10px;
     border: 1px solid #584B5C;
     padding: 0.8rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     box-shadow: 0 8px 12px 0 rgb(0 0 0 / 10%);
     cursor: pointer;
-    background-color: #EF534F;
+    background-color: #ffa500;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
+
+@media screen and (min-width: 425px) and (max-width: 1024px) {
+    .cardItem { 
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .cardItem { 
+        margin-right: 1rem;
+        padding: 1.8rem;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .cardItem {
+        min-width: 24rem;
+    }
+}
+

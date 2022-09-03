@@ -1,7 +1,17 @@
 .cardInfo {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.cardInfo:nth-child(1) {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.cardInfo:nth-child(2) {
+    margin-bottom: 3.5rem;
 }
 
 .cardInfo:last-child {
-    float: right;
+   align-self: flex-end;
 }
+

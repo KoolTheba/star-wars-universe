@@ -13,7 +13,7 @@ const FilmList = ({filmsList, error}) => {
     return (
         <>
             <div className={styles.cardsWrapper}>
-                <h3>Films listed</h3>
+                <h3 className={styles.title}>Your films list!</h3>
                 <ul className={styles.cardsList}>
                 {filmsList.map((film) => (
                     <li key={film.episode_id} className={styles.cardItem}>
