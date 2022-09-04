@@ -2,8 +2,8 @@
 Your favorite star-wars-pedia to search for films with your favorite characters 🤖 in the most curious planets 🌍 🛸
 
 <br>
-    <p style="width:100%;height:0;padding-bottom:56%;">
-        <img width="100%" height="100%" src='https://giphy.com/embed/krkrHAEodHgzP72rTI' alt="baby-yoda-rides"/>
+    <p>
+        <img src='https://media.giphy.com/media/krkrHAEodHgzP72rTI/giphy.gif' alt="baby-yoda-rides"/>
     </p>
 </br>
 
