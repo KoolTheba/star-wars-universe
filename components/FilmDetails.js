@@ -36,7 +36,7 @@ const FilmDetails = () => {
         return (
             <>
                 <div className={styles.errorContainer}>
-                    <span className={styles.error}>Danger!! An error we had!!</span>
+                    <span data-testid="errorMessage" role="text" className={styles.error}>Danger. An error we had</span>
                     <Link href={'/'}>
                         <a>
                             <button className={styles.homeButton}>Take me back Home</button>
