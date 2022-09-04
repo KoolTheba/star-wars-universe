@@ -9,31 +9,31 @@ import { arrayHandler } from '../utils/arrayTransform'
 import styles from '../styles/FilmDetails.module.css'
 
 const FilmDetails = () => {
-    const router = useRouter()
-    const { query: { filmId, search }} = router
+  const router = useRouter()
+  const { query: { filmId, search } } = router
 
-    const [filmDetails, setFilmDetails] = useState(null)
-    const [error, setError] = useState(null)
+  const [filmDetails, setFilmDetails] = useState(null)
+  const [error, setError] = useState(null)
 
-    useEffect(() => {                
-        const filmUrl = `https://swapi.dev/api/films/${parseInt(filmId)}`
-    
-        fetch(filmUrl)
-        .then(res => res.json())
-        .then(data => data.detail ? setError(data.detail) : setFilmDetails(data))
-        .catch(err => setError(err))
-    }, [])
+  useEffect(() => {
+    const filmUrl = `https://swapi.dev/api/films/${parseInt(filmId)}`
 
-    if(!error && !filmDetails){
-        return (
+    fetch(filmUrl)
+      .then(res => res.json())
+      .then(data => data.detail ? setError(data.detail) : setFilmDetails(data))
+      .catch(err => setError(err))
+  }, [filmId])
+
+  if (!error && !filmDetails) {
+    return (
             <div className={styles.loadingContainer}>
                 <span className={styles.loading}>Working the Force is...not hurry you must be!</span>
             </div>
-        )
-    }
+    )
+  }
 
-    if(error){
-        return (
+  if (error) {
+    return (
             <>
                 <div className={styles.errorContainer}>
                     <span data-testid="errorMessage" role="text" className={styles.error}>Danger. An error we had</span>
@@ -44,12 +44,12 @@ const FilmDetails = () => {
                     </Link>
                 </div>
             </>
-        )
-    }
+    )
+  }
 
-    const searchTermsList = arrayHandler(search)
+  const searchTermsList = arrayHandler(search)
 
-    return (
+  return (
         <div className={styles.container}>
             {filmDetails &&
             <>
@@ -57,10 +57,10 @@ const FilmDetails = () => {
                     className={styles.backButton}
                     type="button"
                     onClick={() => {
-                        router.push({
+                      router.push({
                         pathname: '/',
-                        query: { search },
-                        })
+                        query: { search }
+                      })
                     }}
                     >
                     Back to results
@@ -82,7 +82,7 @@ const FilmDetails = () => {
             </>
             }
         </div>
-    )
+  )
 }
 
 export default FilmDetails

@@ -1,9 +1,10 @@
 import Head from 'next/head'
+import Image from 'next/image'
 
 import FilmSearch from '../components/FilmSearch'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home () {
   return (
     <div className={styles.container}>
       <Head>
@@ -21,8 +22,8 @@ export default function Home() {
 
         <FilmSearch />
 
-        <div>
-          <img src='/bb8.jpeg' className={styles.bb8Image} alt={'bb8 character'}/>
+        <div className={styles.bb8Image}>
+          <Image width='192px' height='144px' src='/bb8.jpeg' alt={'bb8 character'}/>
         </div>
       </main>
 

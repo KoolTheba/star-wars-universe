@@ -1,16 +1,17 @@
-import React from "react"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import FilmCard from './FilmCard'
-import SearchDetails from "./SearchDetails"
+import SearchDetails from './SearchDetails'
 
-import { arrayHandler } from "../utils/arrayTransform"
+import { arrayHandler } from '../utils/arrayTransform'
 
 import styles from '../styles/FilmList.module.css'
 
-const FilmList = ({filmsList, searchContext}) => {
-    const searchContextElements = arrayHandler(searchContext)
+const FilmList = ({ filmsList, searchContext }) => {
+  const searchContextElements = arrayHandler(searchContext)
 
-    return (
+  return (
         <>
             <div className={styles.cardsWrapper}>
                 <div className={styles.titleWrapper}>
@@ -26,7 +27,12 @@ const FilmList = ({filmsList, searchContext}) => {
                 </ul>
             </div>
         </>
-    )
+  )
+}
+
+FilmList.propTypes = {
+  filmsList: PropTypes.array,
+  searchContext: PropTypes.string
 }
 
 export default FilmList

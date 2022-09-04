@@ -1,7 +1,7 @@
-import React, { useState, useReducer, useEffect, useCallback } from "react"
+import React, { useState, useReducer, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 
-import { removeSpaces, removeSpecialChars } from "../utils/searchValueParsers"
+import { removeSpaces, removeSpecialChars } from '../utils/searchValueParsers'
 
 import FilmList from './FilmList'
 import styles from '../styles/FilmSearch.module.css'
@@ -10,33 +10,33 @@ const initialState = {
   loading: false,
   data: null,
   error: null
-};
+}
 
-function fetchPostReducer(state, action) {
-  if(action.type === "loading"){
+function fetchPostReducer (state, action) {
+  if (action.type === 'loading') {
     return {
       loading: true,
       data: null,
       error: null
     }
-  } else if (action.type === "fetchComplete") {
+  } else if (action.type === 'fetchComplete') {
     return {
       loading: false,
       data: action.data,
       error: null
-    };
-  } else if (action.type === "error") {
+    }
+  } else if (action.type === 'error') {
     return {
       loading: false,
       data: null,
-      error: "Error searching for films"
-    };
+      error: 'Error searching for films'
+    }
   } else {
-    throw new Error();
+    throw new Error()
   }
 }
 
-const searchByTerm = async (term) => {
+const searchByTerm = async (term, dispatch) => {
   const urlsList = [
     `https://swapi.dev/api/films?search=${term}`,
     `https://swapi.dev/api/people?search=${term}`,
@@ -46,11 +46,11 @@ const searchByTerm = async (term) => {
   ]
 
   const results = await Promise.all(urlsList.map(url => fetch(url)))
-  .then(responses => Promise.all(responses.map(res => res.json())))
-  .catch((error) => dispatch({ type: "error", error }))
-  
+    .then(responses => Promise.all(responses.map(res => res.json())))
+    .catch((error) => dispatch({ type: 'error', error }))
+
   const result = results.filter(el => el.results.length)
-  return result[0].results[0].films 
+  return result[0].results[0].films
     ? result[0].results[0].films
     : [result[0].results[0].url]
 }
@@ -58,13 +58,13 @@ const searchByTerm = async (term) => {
 const FilmSearch = () => {
   const router = useRouter()
 
-  const [state, dispatch] = useReducer(fetchPostReducer, initialState);
+  const [state, dispatch] = useReducer(fetchPostReducer, initialState)
 
   const [searchValue, setSearchValue] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const searchValueRef = useCallback(node => {
-    if(router.query.search) {
+    if (router.query.search) {
       setSearchValue(router.query.search)
       setIsSubmitted(true)
     }
@@ -74,49 +74,48 @@ const FilmSearch = () => {
     const searchValuesList = searchValue.length > 0 ? removeSpaces(searchValue).split(' ') : []
 
     const fetchFilmList = () => {
-      dispatch({ type: "loading" })
+      dispatch({ type: 'loading' })
 
-      Promise.all(searchValuesList.map(el => searchByTerm(el)))
-      .then((arr) => {
-        return arr.reduce((p,c) => p.filter(e => c.includes(e)))
-      }).then((commomFilms) => {
-        return Promise.all(commomFilms.map(url => fetch(url).then(res => res.json())))
-      })
-      .then((data) => {
-        dispatch({ type: "fetchComplete", data })
-        setSearchValue('')
-      })
-      .catch((error) => dispatch({ type: "error", error }))
+      Promise.all(searchValuesList.map(el => searchByTerm(el, dispatch)))
+        .then((arr) => {
+          return arr.reduce((p, c) => p.filter(e => c.includes(e)))
+        }).then((commomFilms) => {
+          return Promise.all(commomFilms.map(url => fetch(url).then(res => res.json())))
+        })
+        .then((data) => {
+          dispatch({ type: 'fetchComplete', data })
+          setSearchValue('')
+        })
+        .catch((error) => dispatch({ type: 'error', error }))
     }
 
     isSubmitted && fetchFilmList()
+  }, [isSubmitted])
 
-    }, [isSubmitted]);
+  const handleChange = (e) => {
+    setSearchValue(removeSpecialChars((e.target.value)))
+  }
 
-    const handleChange = (e) => {
-      setSearchValue(removeSpecialChars((e.target.value)))
-    }
+  const handleSearch = (e) => {
+    e.preventDefault()
+    setIsSubmitted(true)
 
-    const handleSearch = (e) => {
-      e.preventDefault()
-      setIsSubmitted(true)
+    const parserNoChars = removeSpecialChars(searchValue)
+    const parsedSearchValue = removeSpaces(parserNoChars)
+    router.push({
+      pathname: '/',
+      query: { search: parsedSearchValue }
+    })
+  }
 
-      const parserNoChars = removeSpecialChars(searchValue)
-      const parsedSearchValue = removeSpaces(parserNoChars)
-      router.push({
-        pathname: '/',
-        query: { search: parsedSearchValue }
-      })
-    }
+  const handleReset = () => {
+    setSearchValue('')
+    setIsSubmitted(false)
+  }
 
-    const handleReset = () => {
-      setSearchValue('')
-      setIsSubmitted(false)
-    }
+  const { loading, data, error } = state
 
-    const { loading, data, error } = state
-
-    return (
+  return (
         <>
         <section className={styles.instructionsSection}>
           <p className={styles.description}>Instructions:</p>
@@ -150,7 +149,7 @@ const FilmSearch = () => {
         {error && <span className={styles.error}>No films you found. Reset and search again.</span>}
         {data && <FilmList filmsList={data} searchContext={router.query.search} />}
         </>
-    )
+  )
 }
 
 export default FilmSearch
