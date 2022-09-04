@@ -22,7 +22,7 @@ export default function Home() {
         <FilmSearch />
 
         <div>
-          <img src='/bb8.jpeg' className={styles.bb8Image} />
+          <img src='/bb8.jpeg' className={styles.bb8Image} alt={'bb8 character'}/>
         </div>
       </main>
 

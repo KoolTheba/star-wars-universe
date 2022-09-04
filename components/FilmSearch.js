@@ -1,8 +1,7 @@
-import React, { useState, useReducer, useEffect, useRef, useCallback } from "react"
+import React, { useState, useReducer, useEffect, useCallback } from "react"
 import { useRouter } from 'next/router'
 
 import { removeSpaces, removeSpecialChars } from "../utils/searchValueParsers"
-import { saveToStorage, loadFromStorage, removeFromStorage } from '../utils/localStorage'
 
 import FilmList from './FilmList'
 import styles from '../styles/FilmSearch.module.css'
