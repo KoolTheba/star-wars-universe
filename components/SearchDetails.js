@@ -6,7 +6,7 @@ const SearchDetails = ({list}) => {
     return (
         <>
             <div className={styles.contextWrapper}>
-                {list.map((el, index) => <span key={index} className={styles.context}>{el}</span>)}
+                {list.map((el, index) => <span role='text' key={index} className={styles.context}>{el}</span>)}
             </div>
         </>
     )

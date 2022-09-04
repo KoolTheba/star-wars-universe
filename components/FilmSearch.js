@@ -137,6 +137,7 @@ const FilmSearch = () => {
           <input
             className={styles.formInput}
             type='text'
+            name='search'
             placeholder='Search by title, character or planet...'
             value={searchValue}
             onChange={handleChange}

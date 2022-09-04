@@ -1,22 +1,29 @@
 import React from "react";
 
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Home from "@/pages/index";
 
 jest.mock('next/router', () => ({
   useRouter: () => ({
     query: { search: 'luke' },
-  }),
+  })
 }));
 
 describe('Home', () => {
-  it('renders a heading', () => {
-    render(<Home />)
+  it('renders UI elements needed', () => {
+    const checkToBeInDoc = (elem) =>  expect(elem).toBeInTheDocument()
+    const { getByRole } = render(<Home />);
 
-    const heading = screen.getByRole('heading', {
+    const mainHeading = getByRole('heading', {
       name: /Star Wars films search you can\!/i,
     })
+    const bb8Image = getByRole('img', { name: /bb8 character/i })
+    const footer = getByRole('contentinfo')
+    const redirectionLink = getByRole('link', { name: /@KoolTheba/i })
 
-    expect(heading).toBeInTheDocument()
+    checkToBeInDoc(mainHeading)
+    checkToBeInDoc(bb8Image)
+    checkToBeInDoc(footer)
+    checkToBeInDoc(redirectionLink)
   })
 })

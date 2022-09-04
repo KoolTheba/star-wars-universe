@@ -67,17 +67,17 @@ const FilmDetails = () => {
                 </button>
                 <div className={styles.titleWrapper}>
                     <h1 className={styles.title}>{filmDetails.title}</h1>
-                    <p className={styles.subtitle}>Episode: {filmId}</p>
+                    <p data-testid="episodeParagraph" className={styles.subtitle}>Episode: {filmId}</p>
                 </div>
                 <div className={styles.searchTermsWrapper}>
                     <SearchDetails list={searchTermsList}/>
                 </div>
                 <div className={styles.filmDetailsWrapper}>
                     <div className={styles.specialWrapper}>
-                        <p>Director: {filmDetails.director}</p>
-                        <p>Producer: {filmDetails.producer}</p>
+                        <p data-testid="directorParagraph">Director: {filmDetails.director}</p>
+                        <p data-testid="producerParagraph">Producer: {filmDetails.producer}</p>
                     </div>
-                    <p>Release date: {filmDetails.release_date && filmDetails.release_date.split('-').reverse().join('-')}</p>
+                    <p data-testid="dateParagraph">Release date: {filmDetails.release_date && filmDetails.release_date.split('-').reverse().join('-')}</p>
                 </div>
             </>
             }
