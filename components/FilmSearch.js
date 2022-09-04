@@ -1,6 +1,7 @@
 import React, { useState, useReducer, useEffect, useRef, useCallback } from "react"
 import { useRouter } from 'next/router'
 
+import { removeSpaces, removeSpecialChars } from "../utils/searchValueParsers"
 import { saveToStorage, loadFromStorage, removeFromStorage } from '../utils/localStorage'
 
 import FilmList from './FilmList'
@@ -71,7 +72,7 @@ const FilmSearch = () => {
   }, [router.query.search])
 
   useEffect(() => {
-    const searchValuesList = searchValue.length > 0 ? searchValue.trim().split(' ') : []
+    const searchValuesList = searchValue.length > 0 ? removeSpaces(searchValue).split(' ') : []
 
     const fetchFilmList = () => {
       dispatch({ type: "loading" })
@@ -94,15 +95,18 @@ const FilmSearch = () => {
     }, [isSubmitted]);
 
     const handleChange = (e) => {
-      setSearchValue(e.target.value)
+      setSearchValue(removeSpecialChars((e.target.value)))
     }
 
     const handleSearch = (e) => {
       e.preventDefault()
       setIsSubmitted(true)
+
+      const parserNoChars = removeSpecialChars(searchValue)
+      const parsedSearchValue = removeSpaces(parserNoChars)
       router.push({
         pathname: '/',
-        query: { search: searchValue }
+        query: { search: parsedSearchValue }
       })
     }
 
