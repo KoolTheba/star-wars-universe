@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "extends": ["next/core-web-vitals", "standard", "standard-react"],
+  "plugins": ["testing-library"],
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ],
+  "env": {
+    "jest": true,
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "parser": "@babel/eslint-parser",
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "ignorePatterns": ["**/node_modules/**"]
+}

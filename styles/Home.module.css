@@ -1,0 +1,66 @@
+.container {
+  max-height: 100vh;
+  padding: 1.5rem;
+}
+
+.main {
+  min-height: 90vh;
+  padding: 9rem 1rem 1rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.footer {
+  display: flex;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  font-size: 1.3rem;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  cursor: pointer;
+  color: #ffa500;
+}
+
+.footer a:hover,
+.footer a:focus,
+.footer a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 2rem;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+}
+
+.yodaImage {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+}
+
+.bb8Image {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -1,0 +1,14 @@
+.contextWrapper {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.context {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    background-color: #ffa500;
+    padding: 0.15rem;
+    display: inline-block;
+}

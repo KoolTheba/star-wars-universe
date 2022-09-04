@@ -1,0 +1,126 @@
+.container,
+.errorContainer,
+.loadingContainer {
+    min-height: 90vh;
+    padding: 4rem 3rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    justify-content: flex-start;
+}
+
+.errorContainer,
+.loadingContainer {
+    align-items: center;
+    margin-top: 6rem;
+}
+
+.backButton {
+    align-self: flex-start;
+}
+
+.backButton,
+.homeButton {
+    margin-bottom: 4rem;
+    font-size: 1.3rem;
+    height: 3rem;
+    text-decoration: underline;
+    font-style: italic;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.titleWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    height: auto;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    margin-right: 1.5rem;
+}
+
+.subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.searchTermsWrapper {
+    display: flex;
+}
+
+.filmDetailsWrapper {
+    width: 100%;
+    height: auto;
+    background-color: #ffa500;
+    margin-top: 1rem;
+    border-radius: 5px;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.error {
+    font-size: 1.8rem;
+    margin-top: 1.8rem;
+    padding: 0.5rem;
+    text-align: center;
+    color: #ff0033;
+}
+
+.homeButton {
+    margin-top: 1rem;
+}
+
+.loading {
+    animation: pulse 5s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      font-size: 1.2rem;
+    }
+    100% {
+        font-size: 2.2rem;
+    }
+}
+
+.filmDetailsWrapper > p,
+.specialWrapper > p {
+    margin-bottom: 1.3rem;
+    letter-spacing: 0.02rem;
+}
+
+@media screen and (min-width: 900px) and (max-width: 1124px){
+    .filmDetailsWrapper { width: 90%; }
+}
+
+@media screen and (min-width: 1125px) {
+    .filmDetailsWrapper { 
+        width: 80%;
+    }
+
+    .specialWrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-bottom: 2rem;
+    }
+
+    .specialWrapper > p:nth-child(1){
+        flex-grow: 2;
+    }
+
+    .specialWrapper > p:nth-child(2){
+        flex-grow: 1;
+    }
+}
