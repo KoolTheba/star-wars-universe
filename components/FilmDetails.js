@@ -25,18 +25,24 @@ const FilmDetails = () => {
     }, [])
 
     if(!error && !filmDetails){
-        return <span className={styles.loading}>Working the Force is...not hurry you must be!</span>
+        return (
+            <div className={styles.loadingContainer}>
+                <span className={styles.loading}>Working the Force is...not hurry you must be!</span>
+            </div>
+        )
     }
 
     if(error){
         return (
             <>
-                <span className={styles.error}>Danger!! An error we had!!</span>
-                <Link href={'/'}>
-                    <a>
-                        <p className={styles.backButton}>Back Home!</p>
-                    </a>
-                </Link>
+                <div className={styles.errorContainer}>
+                    <span className={styles.error}>Danger!! An error we had!!</span>
+                    <Link href={'/'}>
+                        <a>
+                            <button className={styles.homeButton}>Take me back Home</button>
+                        </a>
+                    </Link>
+                </div>
             </>
         )
     }
@@ -67,8 +73,10 @@ const FilmDetails = () => {
                     <SearchDetails list={searchTermsList}/>
                 </div>
                 <div className={styles.filmDetailsWrapper}>
-                    <p>Director: {filmDetails.director}</p>
-                    <p>Producer: {filmDetails.producer}</p>
+                    <div className={styles.specialWrapper}>
+                        <p>Director: {filmDetails.director}</p>
+                        <p>Producer: {filmDetails.producer}</p>
+                    </div>
                     <p>Release date: {filmDetails.release_date && filmDetails.release_date.split('-').reverse().join('-')}</p>
                 </div>
             </>
