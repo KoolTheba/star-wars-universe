@@ -16,12 +16,14 @@ const FilmDetails = () => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const filmUrl = `https://swapi.dev/api/films/${parseInt(filmId)}`
+    if (filmId) {
+      const filmUrl = `https://swapi.dev/api/films/${parseInt(filmId)}`
 
-    fetch(filmUrl)
-      .then(res => res.json())
-      .then(data => data.detail ? setError(data.detail) : setFilmDetails(data))
-      .catch(err => setError(err))
+      fetch(filmUrl)
+        .then(res => res.json())
+        .then(data => data.detail ? setError(data.detail) : setFilmDetails(data))
+        .catch(err => setError(err))
+    }
   }, [filmId])
 
   if (!error && !filmDetails) {
