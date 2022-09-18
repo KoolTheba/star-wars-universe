@@ -98,19 +98,23 @@ const FilmSearch = () => {
   }, [isSubmitted, searchValue])
 
   const handleChange = (e) => {
-    setSearchValue(removeSpecialChars((e.target.value)))
+    if (e.target.value.length > 0) {
+      setSearchValue(removeSpecialChars((e.target.value)))
+    }
   }
 
   const handleSearch = (e) => {
     e.preventDefault()
-    setIsSubmitted(true)
+    if (searchValue.length > 0) {
+      setIsSubmitted(true)
 
-    const parserNoChars = removeSpecialChars(searchValue)
-    const parsedSearchValue = removeSpaces(parserNoChars)
-    router.push({
-      pathname: '/',
-      query: { search: parsedSearchValue }
-    })
+      const parserNoChars = removeSpecialChars(searchValue)
+      const parsedSearchValue = removeSpaces(parserNoChars)
+      router.push({
+        pathname: '/',
+        query: { search: parsedSearchValue }
+      })
+    }
   }
 
   const { loading, data, error } = state
@@ -134,6 +138,8 @@ const FilmSearch = () => {
         <form className={styles.form}>
           <input
             className={styles.formInput}
+            required={true}
+            minLength={1}
             type='text'
             name='search'
             placeholder='Search by title, character or planet...'
