@@ -9,7 +9,7 @@ import { arrayHandler } from '../utils/arrayTransform'
 import styles from '../styles/FilmList.module.css'
 
 const FilmList = ({ filmsList, searchContext }) => {
-  const searchContextElements = arrayHandler(searchContext)
+  const searchContextElements = searchContext && arrayHandler(searchContext)
 
   return (
         <>

@@ -41,7 +41,7 @@ const FilmDetails = () => {
     )
   }
 
-  const searchTermsList = arrayHandler(search)
+  const searchTermsList = search && arrayHandler(search)
 
   return (
         <div className={styles.container}>
