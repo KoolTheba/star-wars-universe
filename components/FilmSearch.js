@@ -2,6 +2,7 @@ import React, { useState, useReducer, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 
 import { removeSpaces, removeSpecialChars } from '../utils/searchValueParsers'
+import { saveToStorage } from '../utils/localStorage'
 
 import FilmList from './FilmList'
 import styles from '../styles/FilmSearch.module.css'
@@ -20,6 +21,7 @@ function fetchPostReducer (state, action) {
       error: null
     }
   } else if (action.type === 'fetchComplete') {
+    saveToStorage('films', action.data)
     return {
       loading: false,
       data: action.data,
