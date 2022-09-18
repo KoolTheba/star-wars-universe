@@ -4,19 +4,15 @@ import PropTypes from 'prop-types'
 import FilmCard from './FilmCard'
 import SearchDetails from './SearchDetails'
 
-import { arrayHandler } from '../utils/arrayTransform'
-
 import styles from '../styles/FilmList.module.css'
 
 const FilmList = ({ filmsList, searchContext }) => {
-  const searchContextElements = searchContext && arrayHandler(searchContext)
-
   return (
         <>
             <div className={styles.cardsWrapper}>
                 <div className={styles.titleWrapper}>
                     <h3 className={styles.title}>Your films list for your search:</h3>
-                    <SearchDetails list={searchContextElements}/>
+                    <SearchDetails list={searchContext}/>
                 </div>
                 <ul className={styles.cardsList}>
                 {filmsList.map((film) => (

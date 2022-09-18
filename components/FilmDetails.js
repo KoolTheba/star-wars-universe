@@ -4,7 +4,6 @@ import Link from 'next/link'
 
 import SearchDetails from './SearchDetails'
 
-import { arrayHandler } from '../utils/arrayTransform'
 import { loadFromStorage } from '../utils/localStorage'
 
 import styles from '../styles/FilmDetails.module.css'
@@ -41,8 +40,6 @@ const FilmDetails = () => {
     )
   }
 
-  const searchTermsList = search && arrayHandler(search)
-
   return (
         <div className={styles.container}>
             {filmDetails &&
@@ -64,7 +61,7 @@ const FilmDetails = () => {
                     <p data-testid="episodeParagraph" className={styles.subtitle}>Episode: {filmId}</p>
                 </div>
                 <div className={styles.searchTermsWrapper}>
-                    <SearchDetails list={searchTermsList}/>
+                    <SearchDetails list={search}/>
                 </div>
                 <div className={styles.filmDetailsWrapper}>
                     <div className={styles.specialWrapper}>
