@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import '../styles/globals.css'
 
 if (Boolean(process.env.NEXT_PUBLIC_API_MOCKING) === true) {
-  import('../mocks').then(({ setupMocks }) => {
+  import('../../mocks').then(({ setupMocks }) => {
     setupMocks()
   })
 }
