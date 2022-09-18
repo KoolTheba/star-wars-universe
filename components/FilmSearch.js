@@ -42,7 +42,7 @@ const searchByTerm = async (term, dispatch) => {
     `https://swapi.dev/api/people?search=${term}`,
     `https://swapi.dev/api/planets?search=${term}`,
     `https://swapi.dev/api/starships?search=${term}`,
-    `https://swapi.dev/api/vehicles?search=${term}"`
+    `https://swapi.dev/api/vehicles?search=${term}`
   ]
 
   const results = await Promise.all(urlsList.map(url => fetch(url)))
