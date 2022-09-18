@@ -2,9 +2,12 @@ import React, { useState, useReducer, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 
 import { removeSpaces, removeSpecialChars } from '../utils/searchValueParsers'
-import { saveToStorage } from '../utils/localStorage'
+import searchByTerm from '../utils/searchByTerm'
+
+import fetchPostReducer from '../hooks/fetchPostReducer'
 
 import FilmList from './FilmList'
+import Instructions from './Instructions'
 import styles from '../styles/FilmSearch.module.css'
 
 const initialState = {
@@ -13,55 +16,9 @@ const initialState = {
   error: null
 }
 
-function fetchPostReducer (state, action) {
-  if (action.type === 'loading') {
-    return {
-      loading: true,
-      data: null,
-      error: null
-    }
-  } else if (action.type === 'fetchComplete') {
-    saveToStorage('films', action.data)
-    return {
-      loading: false,
-      data: action.data,
-      error: null
-    }
-  } else if (action.type === 'error') {
-    return {
-      loading: false,
-      data: null,
-      error: 'Error searching for films'
-    }
-  } else {
-    throw new Error()
-  }
-}
-
-const searchByTerm = async (term, dispatch) => {
-  const urlsList = [
-    `https://swapi.dev/api/films?search=${term}`,
-    `https://swapi.dev/api/people?search=${term}`,
-    `https://swapi.dev/api/planets?search=${term}`,
-    `https://swapi.dev/api/starships?search=${term}`,
-    `https://swapi.dev/api/vehicles?search=${term}`
-  ]
-
-  const results = await Promise.all(urlsList.map(url => fetch(url)))
-    .then(responses => Promise.all(responses.map(res => res.json())))
-    .catch((error) => dispatch({ type: 'error', error }))
-
-  const result = results.filter(el => el.results.length)
-  return result[0].results[0].films
-    ? result[0].results[0].films
-    : [result[0].results[0].url]
-}
-
 const FilmSearch = () => {
   const router = useRouter()
-
   const [state, dispatch] = useReducer(fetchPostReducer, initialState)
-
   const [searchValue, setSearchValue] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -122,21 +79,8 @@ const FilmSearch = () => {
   const { loading, data, error } = state
 
   return (
-        <>
-        <section className={styles.instructionsSection}>
-          <p className={styles.description}>Instructions:</p>
-          <ol className={styles.directionsList}>
-            <li>Search by one or more words separated by blank spaces</li>
-            <li>The word(s) could be from a film title, a character, a planet or all at once!</li>
-            <li>You can also search by vehicle or starship!</li>
-            <li>Press Go button and see the results! <span role='img' aria-label="rocket">🚀</span></li>
-          </ol>
-        </section>
-
-        <section className={styles.hintSection}>
-          <p className={styles.hints}>Hints: looking for r2d2? Search for r2; looking for C3PO? Search for 3po</p>
-        </section>
-
+      <>
+        <Instructions />
         <form className={styles.form}>
           <input
             className={styles.formInput}
@@ -155,7 +99,7 @@ const FilmSearch = () => {
         {loading && <span className={styles.loading}>Working the Force is...not hurry you must be!</span>}
         {error && <span className={styles.error}>No films we found. Search again!</span>}
         {data && <FilmList filmsList={data} searchContext={router.query.search} />}
-        </>
+      </>
   )
 }
 
