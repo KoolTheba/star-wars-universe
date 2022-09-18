@@ -85,12 +85,17 @@ const FilmSearch = () => {
         .then((data) => {
           dispatch({ type: 'fetchComplete', data })
           setSearchValue('')
+          setIsSubmitted(false)
         })
-        .catch((error) => dispatch({ type: 'error', error }))
+        .catch((error) => {
+          dispatch({ type: 'error', error })
+          setSearchValue('')
+          setIsSubmitted(false)
+        })
     }
 
     isSubmitted && fetchFilmList()
-  }, [isSubmitted])
+  }, [isSubmitted, searchValue])
 
   const handleChange = (e) => {
     setSearchValue(removeSpecialChars((e.target.value)))
@@ -106,11 +111,6 @@ const FilmSearch = () => {
       pathname: '/',
       query: { search: parsedSearchValue }
     })
-  }
-
-  const handleReset = () => {
-    setSearchValue('')
-    setIsSubmitted(false)
   }
 
   const { loading, data, error } = state
@@ -142,11 +142,10 @@ const FilmSearch = () => {
             ref={searchValueRef}
           />
           <button className={styles.ctaButton} onClick={handleSearch}>Go!</button>
-          <button className={styles.resetButton} onClick={handleReset}>Reset</button>
         </form>
 
         {loading && <span className={styles.loading}>Working the Force is...not hurry you must be!</span>}
-        {error && <span className={styles.error}>No films you found. Reset and search again.</span>}
+        {error && <span className={styles.error}>No films we found. Search again!</span>}
         {data && <FilmList filmsList={data} searchContext={router.query.search} />}
         </>
   )
