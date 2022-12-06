@@ -1,15 +1,14 @@
 import React from 'react'
 
-import { getByTestId, render, waitFor } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import FilmDetails from '../src/components/FilmDetails'
 
-import { handlers } from '../mocks/handlers'
 import { server } from '../mocks/server'
 import { rest } from 'msw'
 
 jest.mock('next/router', () => ({
   useRouter: () => ({
-    query: { filmId: 4, search: 'luke' }
+    query: { filmId: 1, search: 'luke' }
   })
 }))
 
@@ -35,9 +34,10 @@ describe('FilmDetails', () => {
       checkToBeInDoc(dateParagraph)
     })
   })
+
   it('renders error messages when there is an error in the request', async () => {
     server.resetHandlers(
-      rest.get('https://swapi.dev/api/films/4', (req, res, ctx) => {
+      rest.get('https://swapi.dev/api/films/1', (req, res, ctx) => {
         return res(
           ctx.status(500),
           ctx.json({ detail: 'Not found' })

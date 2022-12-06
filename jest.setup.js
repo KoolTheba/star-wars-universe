@@ -6,7 +6,7 @@ import { server } from './mocks/server'
 
 beforeEach(() => server.resetHandlers())
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'bypass' }))
+beforeAll(() => server.listen())
 
 afterEach(() => server.resetHandlers())
 

@@ -11,7 +11,7 @@ jest.mock('next/router', () => ({
 describe('SearchDetails', () => {
   it('renders UI elements needed', () => {
     const checkToBeInDoc = (elem) => expect(elem).toBeInTheDocument()
-    const { getByText } = render(<SearchDetails list={['luke']}/>)
+    const { getByText } = render(<SearchDetails list={'luke'}/>)
     const contextWord = getByText('luke')
     checkToBeInDoc(contextWord)
   })
