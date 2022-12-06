@@ -4,7 +4,9 @@ import '@testing-library/jest-dom'
 
 import { server } from './mocks/server'
 
-beforeAll(() => server.listen())
+beforeEach(() => server.resetHandlers())
+
+beforeAll(() => server.listen({ onUnhandledRequest: 'bypass' }))
 
 afterEach(() => server.resetHandlers())
 

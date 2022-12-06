@@ -29,20 +29,40 @@ describe('FilmSearch', () => {
 
   it('handles error for no films found', async () => {
     server.resetHandlers(
-      rest.get('https://swapi.dev/api/people?search=INVALID', (req, res, ctx) =>
-        res(ctx.status(500))
+      rest.get('https://swapi.dev/api/people', (req, res, ctx) => {
+        const query = req.url.searchParams.get('search')
+        if (query === 'luke') {
+          return res(ctx.status(500))
+        }
+      }
       ),
-      rest.get('https://swapi.dev/api/films?search=INVALID', (req, res, ctx) =>
-        res(ctx.status(500))
+      rest.get('https://swapi.dev/api/films', (req, res, ctx) => {
+        const query = req.url.searchParams.get('search')
+        if (query === 'luke') {
+          return res(ctx.status(500))
+        }
+      }
       ),
-      rest.get('https://swapi.dev/api/planets?search=INVALID', (req, res, ctx) =>
-        res(ctx.status(500))
+      rest.get('https://swapi.dev/api/planets', (req, res, ctx) => {
+        const query = req.url.searchParams.get('search')
+        if (query === 'luke') {
+          return res(ctx.status(500))
+        }
+      }
       ),
-      rest.get('https://swapi.dev/api/starships?search=INVALID', (req, res, ctx) =>
-        res(ctx.status(500))
+      rest.get('https://swapi.dev/api/starships', (req, res, ctx) => {
+        const query = req.url.searchParams.get('search')
+        if (query === 'luke') {
+          return res(ctx.status(500))
+        }
+      }
       ),
-      rest.get('https://swapi.dev/api/vehicles?search=INVALID', (req, res, ctx) =>
-        res(ctx.status(500))
+      rest.get('https://swapi.dev/api/vehicles', (req, res, ctx) => {
+        const query = req.url.searchParams.get('search')
+        if (query === 'luke') {
+          return res(ctx.status(500))
+        }
+      }
       )
     )
 
