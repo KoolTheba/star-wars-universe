@@ -1,11 +1,13 @@
 // Polyfill "window.fetch" used in the React component.
 import 'whatwg-fetch'
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom'
 
-import { server } from "./mocks/server";
+import { server } from './mocks/server'
 
-beforeAll(() => server.listen());
+beforeEach(() => server.resetHandlers())
 
-afterEach(() => server.resetHandlers());
+beforeAll(() => server.listen({ onUnhandledRequest: 'bypass' }))
 
-afterAll(() => server.close());
+afterEach(() => server.resetHandlers())
+
+afterAll(() => server.close())

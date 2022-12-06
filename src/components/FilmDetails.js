@@ -4,8 +4,6 @@ import Link from 'next/link'
 
 import SearchDetails from './SearchDetails'
 
-import { loadFromStorage } from '../utils/localStorage'
-
 import styles from '../styles/FilmDetails.module.css'
 
 const FilmDetails = () => {
@@ -16,14 +14,15 @@ const FilmDetails = () => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const filmsInStorage = loadFromStorage('films')
-    if (!filmsInStorage.length) {
-      setError(error)
-    }
+    if (filmId) {
+      const filmUrl = `https://swapi.dev/api/films/${parseInt(filmId)}`
 
-    const filmSelected = filmsInStorage && filmsInStorage.filter(film => film.episode_id === Number(filmId))
-    setFilmDetails(filmSelected[0])
-  }, [filmId, error])
+      fetch(filmUrl)
+        .then(res => res.json())
+        .then(data => data.detail ? setError(data.detail) : setFilmDetails(data))
+        .catch(err => setError(err))
+    }
+  }, [filmId])
 
   if (error) {
     return (

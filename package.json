@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "test": "NEXT_PUBLIC_API_MOCKING=true jest"
+    "test": "NEXT_PUBLIC_API_MOCKING=true jest",
+    "test:coverage": "NEXT_PUBLIC_API_MOCKING=true jest --coverage"
   },
   "dependencies": {
     "next": "12.2.5",
