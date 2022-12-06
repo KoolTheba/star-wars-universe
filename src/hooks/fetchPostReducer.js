@@ -1,5 +1,3 @@
-import { saveToStorage } from '../utils/localStorage'
-
 function fetchPostReducer (state, action) {
   if (action.type === 'loading') {
     return {
@@ -8,7 +6,6 @@ function fetchPostReducer (state, action) {
       error: null
     }
   } else if (action.type === 'fetchComplete') {
-    saveToStorage('films', action.data)
     return {
       loading: false,
       data: action.data,
