@@ -97,7 +97,7 @@ const FilmSearch = () => {
         </form>
 
         {loading && <span className={styles.loading}>Working the Force is...not hurry you must be!</span>}
-        {error && <span className={styles.error}>No films we found. Search again!</span>}
+        {error && <span data-testid='error' className={styles.error}>No films we found. Search again!</span>}
         {data && <FilmList filmsList={data} searchContext={router.query.search} />}
       </>
   )
