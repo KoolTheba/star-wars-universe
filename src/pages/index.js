@@ -9,7 +9,7 @@ export default function Home () {
     <div className={styles.container}>
       <Head>
         <title>Star Wars wikipedia</title>
-        <meta name="description" content="a cool star wars wikipedia" />
+        <meta name='description' content="a cool star wars wikipedia" />
         <link rel="icon" href="/star-wars.png" />
       </Head>
 

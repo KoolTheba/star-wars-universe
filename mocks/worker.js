@@ -1,5 +1,4 @@
-import { setupWorker } from "msw";
+import { setupWorker } from 'msw'
+import { handlers } from './handlers'
 
-import { handlers } from "./handlers";
-
-export const server = setupWorker(...handlers);
+export const server = setupWorker(...handlers)
